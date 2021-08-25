@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="infoCard"
+            type="br.com.dio.businesscard.binding.CardBinding" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cd_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:colorCard="@{infoCard.backgroundColor}"
+            android:onClick="@{(v) -> click.onClick(v) }"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cv_content_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_check_five"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/check"
+                    android:visibility="@{isSelected ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.95"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.20"
+                    app:srcCompat="@drawable/ic_done_24"
+                    app:tintImage="@{infoCard.textColor}" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_nome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="@{infoCard.nome}"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_nome_empresa"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:textAllCaps="false"
+                    tools:text="Igor Rotondo Bagliotti" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_nome_empresa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@{infoCard.empresa}"
+                    android:textSize="12sp"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toTopOf="@+id/div_longa"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nome"
+                    tools:text="Nome da Empresa" />
+
+                <View
+                    android:id="@+id/div_curta"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="16dp"
+                    app:colorBack="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_telefone"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_email"
+                    app:layout_constraintStart_toStartOf="@+id/lbl_telefone" />
+
+                <View
+                    android:id="@+id/div_longa"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    app:colorBack="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/div_curta"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_nome"
+                    app:layout_constraintStart_toStartOf="@+id/div_curta"
+                    app:layout_constraintTop_toTopOf="@+id/div_curta"
+                    tools:background="?android:attr/listDivider" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lbl_telefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/tel_lbl"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_telefone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_telefone" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_telefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@{infoCard.telefone}"
+                    android:textSize="11sp"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_email"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_telefone"
+                    tools:text="Telefone" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lbl_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/email_lbl"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_email"
+                    app:layout_constraintStart_toStartOf="@+id/lbl_telefone"
+                    app:layout_constraintTop_toTopOf="@+id/tv_email" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="24dp"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@{infoCard.email}"
+                    android:textSize="11sp"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lbl_email"
+                    tools:text="Email" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

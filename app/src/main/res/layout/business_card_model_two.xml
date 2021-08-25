@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="infoCard"
+            type="br.com.dio.businesscard.binding.CardBinding" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cd_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="8dp"
+            android:onClick="@{(v) -> click.onClick(v) }"
+            app:cardElevation="8dp"
+            app:colorCard="@{infoCard.backgroundColor}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cv_content_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_check_two"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/check"
+                    android:visibility="@{isSelected ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.95"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.20"
+                    app:srcCompat="@drawable/ic_done_24"
+                    app:tintImage="@{infoCard.textColor}" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_nome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@{infoCard.nome}"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:textAllCaps="true"
+                    tools:text="Igor Rotondo Bagliotti" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_nome_empresa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{infoCard.empresa}"
+                    android:textSize="14sp"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_nome"
+                    app:layout_constraintStart_toStartOf="@+id/tv_nome"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nome"
+                    tools:text="Nome da Empresa" />
+
+                <View
+                    android:id="@+id/dv_card"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="24dp"
+                    app:colorBack="@{infoCard.textColor}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nome_empresa"
+                    tools:background="@color/black" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_telefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="center_vertical"
+                    android:text="@{infoCard.telefone}"
+                    android:textSize="11sp"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView3"
+                    tools:text="Telefone" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@{infoCard.email}"
+                    android:textSize="11sp"
+                    app:colorText="@{infoCard.textColor}"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="@+id/imageView2"
+                    tools:text="Email" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/fone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintTop_toBottomOf="@+id/dv_card"
+                    app:srcCompat="@drawable/ic_phone"
+                    app:tintImage="@{infoCard.textColor}" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/email_lbl"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toTopOf="@+id/imageView3"
+                    app:srcCompat="@drawable/ic_email"
+                    app:tintImage="@{infoCard.textColor}" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
