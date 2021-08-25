@@ -3,7 +3,6 @@ package br.com.dio.businesscard.ui
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllBusinessCard() {
         mainViewModel.getAll().observe(this, { businessCards ->
-            Log.d("MainAct", "Card: ${businessCards[1].nome}")
             adapter.submitList(businessCards)
         })
     }
