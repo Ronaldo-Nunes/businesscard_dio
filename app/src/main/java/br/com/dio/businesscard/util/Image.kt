@@ -12,6 +12,8 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.FileProvider
+import br.com.dio.businesscard.BuildConfig
 import br.com.dio.businesscard.R
 import java.io.File
 import java.io.FileOutputStream
@@ -19,6 +21,7 @@ import java.io.OutputStream
 
 class Image {
     companion object {
+        const val fileProvider = "${BuildConfig.APPLICATION_ID}.fileProvider"
 
         fun share(context: Context, view: View) {
             val bitmap = getScreenShotFromView(view)
@@ -68,7 +71,7 @@ class Image {
                 // These for devices running on android < Q
                 val imagesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                 val image = File(imagesDir, filename)
-                shareIntent(context, Uri.fromFile(image))
+                shareIntent(context, getFileProviderUri(context, image))
                 fos = FileOutputStream(image)
             }
 
@@ -76,6 +79,14 @@ class Image {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
                 Toast.makeText(context, "Imagem capturada com sucesso", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        private fun getFileProviderUri(context: Context, file: File): Uri {
+            return FileProvider.getUriForFile(
+                context,
+                fileProvider,
+                file
+            )
         }
 
         private fun shareIntent(context: Context, image: Uri) {
